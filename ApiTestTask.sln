@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTestTask", "ApiTestTask.csproj", "{EF615E85-7CAD-4724-B97B-3E8E07AEF70F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTestTask", "ApiTestTask.csproj", "{B144020A-4564-420A-8EE3-A5D716259EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF615E85-7CAD-4724-B97B-3E8E07AEF70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF615E85-7CAD-4724-B97B-3E8E07AEF70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF615E85-7CAD-4724-B97B-3E8E07AEF70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF615E85-7CAD-4724-B97B-3E8E07AEF70F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B144020A-4564-420A-8EE3-A5D716259EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B144020A-4564-420A-8EE3-A5D716259EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B144020A-4564-420A-8EE3-A5D716259EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B144020A-4564-420A-8EE3-A5D716259EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B17B17B7-CF6F-4E94-AA79-2F95E8394CF1}
+		SolutionGuid = {2B086FE5-7311-49F4-90B3-1E8E859A9A65}
 	EndGlobalSection
 EndGlobal
