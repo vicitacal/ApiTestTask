@@ -1,5 +1,7 @@
-﻿namespace ApiTestTask.SearchServices {
-    public class SearchRequest {
+﻿namespace ApiTestTask.Services.SearchServices
+{
+    public class SearchRequest
+    {
         // Mandatory
         // Start point of route, e.g. Moscow 
         public string Origin { get; set; }
@@ -16,7 +18,8 @@
         public SearchFilters? Filters { get; set; }
     }
 
-    public class SearchFilters {
+    public class SearchFilters
+    {
         // Optional
         // End date of route
         public DateTime? DestinationDateTime { get; set; }
@@ -34,7 +37,8 @@
         public bool? OnlyCached { get; set; }
     }
 
-    public class SearchResponse {
+    public class SearchResponse
+    {
         // Mandatory
         // Array of routes
         public Route[] Routes { get; set; }
@@ -56,7 +60,8 @@
         public int MaxMinutesRoute { get; set; }
     }
 
-    public class Route {
+    public class Route
+    {
         // Mandatory
         // Identifier of the whole route
         public Guid Id { get; set; }

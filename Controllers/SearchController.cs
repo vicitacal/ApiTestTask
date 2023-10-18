@@ -1,4 +1,4 @@
-using ApiTestTask.SearchServices;
+using ApiTestTask.Services.SearchServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TestTask.Controllers
@@ -7,14 +7,17 @@ namespace TestTask.Controllers
     [Route("api/[controller]")]
     public class SearchController : ControllerBase
     {
-        public SearchController()
+        private readonly ISearchService _searchService;
+
+        public SearchController(ISearchService searchService)
         {
+            _searchService = searchService;
         }
 
         [HttpPost]
-        public SearchResponse SearchRoute(SearchRequest request)
+        public async Task<SearchResponse> SearchRoute(SearchRequest request, CancellationToken cancellationToken)
         {
-            return new SearchResponse() { MaxMinutesRoute = 0, MaxPrice = 100, MinMinutesRoute = 5, MinPrice = 14, Routes = new ApiTestTask.SearchServices.Route[2] };
+            return await _searchService.SearchAsync(request, cancellationToken);
         }
     }
 }

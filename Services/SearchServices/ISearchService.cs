@@ -1,4 +1,4 @@
-﻿namespace ApiTestTask.SearchServices;
+﻿namespace ApiTestTask.Services.SearchServices;
 
 public interface ISearchService
 {
