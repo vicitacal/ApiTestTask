@@ -1,6 +1,11 @@
-﻿namespace ApiTestTask.Services.SearchDataProviderServices;
+﻿using ApiTestTask.Converters;
+using System.ComponentModel;
+
+namespace ApiTestTask.Services.SearchDataProviderServices;
 
 // HTTP POST http://provider-two/api/v1/search
+
+[TypeConverter(typeof(RequestTwoTypeConverter))]
 public class ProviderTwoSearchRequest
 {
     // Mandatory
@@ -20,6 +25,7 @@ public class ProviderTwoSearchRequest
     public DateTime? MinTimeLimit { get; set; }
 }
 
+[TypeConverter(typeof(ResponseTwoTypeConverter))]
 public class ProviderTwoSearchResponse
 {
     // Mandatory

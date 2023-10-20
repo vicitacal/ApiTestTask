@@ -1,7 +1,11 @@
-﻿namespace ApiTestTask.Services.SearchDataProviderServices;
+﻿using ApiTestTask.Converters;
+using System.ComponentModel;
+
+namespace ApiTestTask.Services.SearchDataProviderServices;
 
 // HTTP POST http://provider-one/api/v1/search
 
+[TypeConverter(typeof(RequestOneTypeConverter))]
 public class ProviderOneSearchRequest
 {
     // Mandatory
@@ -25,6 +29,7 @@ public class ProviderOneSearchRequest
     public decimal? MaxPrice { get; set; }
 }
 
+[TypeConverter(typeof(ResponseOneTypeConverter))]
 public class ProviderOneSearchResponse
 {
     // Mandatory
