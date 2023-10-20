@@ -19,14 +19,6 @@ namespace ApiTestTask.Services.SearchDataProviderServices
         }
 
         public async Task<ProviderResponse> SearchAsync(ProviderRequest request, CancellationToken cancellationToken) {
-
-            var providerContent = new ProviderOneSearchRequest() { 
-                DateFrom = request.DateFrom,
-                DateTo = request.DateTo,
-                From = request.From,
-                To = request.To,
-                MaxPrice = request.MaxPrice
-            };
             var content = JsonContent.Create(providerContent);
             var response = await _httpClient.PostAsync(BaseUrl + "api/v1/search", content);
             var providerResponse = await response.Content.ReadFromJsonAsync<ProviderOneSearchResponse>(cancellationToken: cancellationToken) ?? throw new Exception("Cannot serialize response");

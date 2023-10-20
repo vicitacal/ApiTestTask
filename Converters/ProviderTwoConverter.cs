@@ -7,7 +7,7 @@ namespace ApiTestTask.Converters;
 
 public class RequestTwoTypeConverter : TypeConverter {
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) {
-        return sourceType == typeof(ProviderOneSearchRequest);
+        return sourceType == typeof(ProviderTwoSearchRequest);
     }
 
     public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType) {
@@ -45,7 +45,7 @@ public class RequestTwoTypeConverter : TypeConverter {
 public class ResponseTwoTypeConverter : TypeConverter {
 
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) {
-        return sourceType == typeof(ProviderTwoSearchResponse);
+        return sourceType == typeof(ResponseTwoTypeConverter);
     }
 
     public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType) {
