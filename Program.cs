@@ -18,7 +18,6 @@ public partial class Program
         builder.Services.AddScoped<ISearchService, MainSearchService>();
         builder.Services.AddScoped<ISearchDataProviderService, DataProviderOneService>();
         builder.Services.AddScoped<ISearchDataProviderService, DataProviderTwoService>();
-        //builder.Services.AddMvcCore();
 
         var app = builder.Build();
         app.UseRouting();

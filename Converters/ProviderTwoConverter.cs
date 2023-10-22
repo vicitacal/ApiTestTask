@@ -34,10 +34,12 @@ public class RequestTwoTypeConverter : TypeConverter {
         }
         return new ProviderRequest() {
             DateFrom = request.DepartureDate,
-            DateTo = null,
             From = request.Departure,
             To = request.Arrival,
-            Filter = new() { MinTimeLimit = request.MinTimeLimit }
+            Filter = new() { 
+                MinTimeLimit = request.MinTimeLimit,
+                DestinationDateTime = null
+            }
         };
     }
 }
@@ -45,11 +47,11 @@ public class RequestTwoTypeConverter : TypeConverter {
 public class ResponseTwoTypeConverter : TypeConverter {
 
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) {
-        return sourceType == typeof(ResponseTwoTypeConverter);
+        return sourceType == typeof(ProviderTwoSearchResponse);
     }
 
     public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType) {
-        return destinationType == typeof(ProviderRequest);
+        return destinationType == typeof(ProviderResponse);
     }
 
     public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType) {
@@ -57,14 +59,17 @@ public class ResponseTwoTypeConverter : TypeConverter {
         if (!CanConvertTo(destinationType) || value is not ProviderTwoSearchResponse response) {
             throw new NotImplementedException();
         }
-        var resultRoutes = new ProviderRoute[response.Routes.Length];
+        var resultRoutes = new Services.SearchServices.Route[response.Routes.Length];
         for (int i = 0; i < response.Routes.Length; i++) {
-            resultRoutes[i] = new ProviderRoute(
-                new RoutePoint() { Date = response.Routes[i].Departure.Date, Point = response.Routes[i].Departure.Point}, 
-                new RoutePoint() { Date = response.Routes[i].Arrival.Date, Point = response.Routes[i].Arrival.Point},
-                response.Routes[i].Price,
-                response.Routes[i].TimeLimit
-            );
+            resultRoutes[i] = new Services.SearchServices.Route()
+            {
+                OriginDateTime = response.Routes[i].Departure.Date, 
+                Origin = response.Routes[i].Departure.Point,
+                DestinationDateTime = response.Routes[i].Arrival.Date, 
+                Destination = response.Routes[i].Arrival.Point,
+                Price = response.Routes[i].Price,
+                TimeLimit = response.Routes[i].TimeLimit
+            };
         }
         return new ProviderResponse(resultRoutes);
     }

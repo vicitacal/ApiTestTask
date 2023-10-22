@@ -1,8 +1,7 @@
-﻿namespace ApiTestTask.Services.SearchDataProviderServices
+﻿namespace ApiTestTask.Services.SearchDataProviderServices;
+
+public interface ISearchDataProviderService
 {
-    public interface ISearchDataProviderService
-    {
-        Task<ProviderResponse> SearchAsync(ProviderRequest request, CancellationToken cancellationToken);
-        Task<bool> IsAvailableAsync(CancellationToken cancellationToken);
-    }
+    Task<ProviderResponse> SearchAsync(ProviderRequest request, CancellationToken cancellationToken);
+    Task<bool> IsAvailableAsync(CancellationToken cancellationToken);
 }

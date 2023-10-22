@@ -4,20 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace TestTask.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class SearchController : ControllerBase
     {
-        private readonly ISearchService _searchService;
 
-        public SearchController(ISearchService searchService)
+        public SearchController()
         {
-            _searchService = searchService;
         }
 
         [HttpPost]
-        public async Task<SearchResponse> SearchRoute(SearchRequest request, CancellationToken cancellationToken)
+        public async Task<SearchResponse> SearchRoute(SearchRequest request, CancellationToken cancellationToken, ISearchService searchService)
         {
-            return await _searchService.SearchAsync(request, cancellationToken);
+            return await searchService.SearchAsync(request, cancellationToken);
         }
     }
 }

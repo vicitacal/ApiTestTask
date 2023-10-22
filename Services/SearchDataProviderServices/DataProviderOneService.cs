@@ -1,9 +1,4 @@
-﻿using ApiTestTask.Services.SearchServices;
-using System.ComponentModel;
-using System.Globalization;
-using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Text.Json;
+﻿using System.ComponentModel;
 
 namespace ApiTestTask.Services.SearchDataProviderServices
 {
@@ -19,11 +14,12 @@ namespace ApiTestTask.Services.SearchDataProviderServices
         }
 
         public async Task<ProviderResponse> SearchAsync(ProviderRequest request, CancellationToken cancellationToken) {
-            var content = JsonContent.Create(providerContent);
-            var response = await _httpClient.PostAsync(BaseUrl + "api/v1/search", content);
+            var requestConverter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchRequest));
+            var content = JsonContent.Create(requestConverter.ConvertFrom(request) ?? throw new Exception("Cannot conver request type"));
+            var response = await _httpClient.PostAsync(BaseUrl + "api/v1/search", content, cancellationToken);
             var providerResponse = await response.Content.ReadFromJsonAsync<ProviderOneSearchResponse>(cancellationToken: cancellationToken) ?? throw new Exception("Cannot serialize response");
-            var converter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchResponse));
-            return new ProviderResponse();
+            var responceConverter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchResponse));
+            return (ProviderResponse?)responceConverter.ConvertTo(providerResponse, typeof(ProviderResponse)) ?? throw new Exception("Cannot conver responce type");
         }
 
         private readonly string BaseUrl = string.Empty;
