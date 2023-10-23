@@ -9,18 +9,18 @@ namespace ApiTestTask.Converters
     {
         public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
         {
-            return destinationType == typeof(SearchRequest);
+            return destinationType == typeof(ProviderRequest);
         }
 
         public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
-            return sourceType == typeof(ProviderRequest);
+            return sourceType == typeof(SearchRequest);
         }
 
         public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType)
         {
             if (value == null) { return null; }
-            if (!CanConvertTo(destinationType) || value is not ProviderRequest providerRequest) 
+            if (!CanConvertTo(context, destinationType) || value is not ProviderRequest providerRequest) 
             { 
                 throw new NotImplementedException(); 
             }
@@ -42,7 +42,7 @@ namespace ApiTestTask.Converters
         public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
             if (value == null) { return null; }
-            if (!CanConvertFrom(value.GetType()) || value is not SearchRequest searchRequest) {  
+            if (!CanConvertFrom(context, value.GetType()) || value is not SearchRequest searchRequest) {  
                 throw new NotImplementedException(); 
             }
             return new ProviderRequest()

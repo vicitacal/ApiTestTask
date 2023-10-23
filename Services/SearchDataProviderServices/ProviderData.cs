@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using ApiTestTask.Converters;
+using System.ComponentModel;
 
 namespace ApiTestTask.Services.SearchDataProviderServices;
 
-[TypeConverter(typeof(ProviderRequest))]
+[TypeConverter(typeof(RequestConverter))]
 public class ProviderRequest
 {
     public string From { get; set; } = string.Empty;

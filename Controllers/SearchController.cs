@@ -7,15 +7,17 @@ namespace TestTask.Controllers
     [Route("api/v1/[controller]")]
     public class SearchController : ControllerBase
     {
+        private readonly ISearchService _searchService;
 
-        public SearchController()
+        public SearchController(ISearchService searchService)
         {
+            _searchService = searchService;
         }
 
         [HttpPost]
-        public async Task<SearchResponse> SearchRoute(SearchRequest request, CancellationToken cancellationToken, ISearchService searchService)
+        public async Task<SearchResponse> SearchRoute(SearchRequest request, CancellationToken cancellationToken)
         {
-            return await searchService.SearchAsync(request, cancellationToken);
+            return await _searchService.SearchAsync(request, cancellationToken);
         }
     }
 }

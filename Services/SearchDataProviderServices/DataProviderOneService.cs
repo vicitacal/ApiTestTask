@@ -15,11 +15,11 @@ namespace ApiTestTask.Services.SearchDataProviderServices
 
         public async Task<ProviderResponse> SearchAsync(ProviderRequest request, CancellationToken cancellationToken) {
             var requestConverter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchRequest));
-            var content = JsonContent.Create(requestConverter.ConvertFrom(request) ?? throw new Exception("Cannot conver request type"));
+            var content = JsonContent.Create(requestConverter.ConvertFrom(request) ?? throw new Exception("Cannot convert request type"));
             var response = await _httpClient.PostAsync(BaseUrl + "api/v1/search", content, cancellationToken);
             var providerResponse = await response.Content.ReadFromJsonAsync<ProviderOneSearchResponse>(cancellationToken: cancellationToken) ?? throw new Exception("Cannot serialize response");
-            var responceConverter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchResponse));
-            return (ProviderResponse?)responceConverter.ConvertTo(providerResponse, typeof(ProviderResponse)) ?? throw new Exception("Cannot conver responce type");
+            var responseConverter = TypeDescriptor.GetConverter(typeof(ProviderOneSearchResponse));
+            return (ProviderResponse?)responseConverter.ConvertTo(providerResponse, typeof(ProviderResponse)) ?? throw new Exception("Cannot convert response type");
         }
 
         private readonly string BaseUrl = string.Empty;

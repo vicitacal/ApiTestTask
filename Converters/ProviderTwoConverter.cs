@@ -7,16 +7,16 @@ namespace ApiTestTask.Converters;
 
 public class RequestTwoTypeConverter : TypeConverter {
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) {
-        return sourceType == typeof(ProviderTwoSearchRequest);
+        return sourceType == typeof(ProviderRequest);
     }
 
     public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType) {
-        return destinationType == typeof(ProviderRequest);
+        return destinationType == typeof(ProviderTwoSearchRequest);
     }
 
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value) {
         if (value == null) { return null; }
-        if (!CanConvertFrom(value.GetType()) || value is not ProviderRequest request) {
+        if (!CanConvertFrom(context, value.GetType()) || value is not ProviderRequest request) {
             throw new NotImplementedException();
         }
         return new ProviderTwoSearchRequest() {
@@ -29,7 +29,7 @@ public class RequestTwoTypeConverter : TypeConverter {
 
     public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType) {
         if (value == null) { return null; }
-        if (!CanConvertTo(destinationType) || value is not ProviderTwoSearchRequest request) {
+        if (!CanConvertTo(context, destinationType) || value is not ProviderTwoSearchRequest request) {
             throw new NotImplementedException();
         }
         return new ProviderRequest() {
@@ -56,7 +56,7 @@ public class ResponseTwoTypeConverter : TypeConverter {
 
     public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType) {
         if (value == null) { return null; }
-        if (!CanConvertTo(destinationType) || value is not ProviderTwoSearchResponse response) {
+        if (!CanConvertTo(context, destinationType) || value is not ProviderTwoSearchResponse response) {
             throw new NotImplementedException();
         }
         var resultRoutes = new Services.SearchServices.Route[response.Routes.Length];

@@ -15,6 +15,7 @@ public partial class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddHttpClient();
+        builder.Services.AddMemoryCache();
         builder.Services.AddScoped<ISearchService, MainSearchService>();
         builder.Services.AddScoped<ISearchDataProviderService, DataProviderOneService>();
         builder.Services.AddScoped<ISearchDataProviderService, DataProviderTwoService>();

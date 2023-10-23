@@ -6,12 +6,15 @@ namespace ApiTestTask.Controllers {
     [ApiController]
     [Route("api/v1/[controller]")]
     public class PingController : Controller {
-        public PingController() {
+        private readonly ISearchService _service;
+
+        public PingController(ISearchService service) {
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<StatusCodeResult> Ping(MainSearchService service, CancellationToken token) {
-            return (await service.IsAvailableAsync(token)) ? Ok() : StatusCode(503);
+        public async Task<StatusCodeResult> Ping() {
+            return (await _service.IsAvailableAsync(HttpContext.RequestAborted)) ? Ok() : StatusCode(503);
         }
     }
 }
